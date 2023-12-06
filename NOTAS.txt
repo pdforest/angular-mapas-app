@@ -1,0 +1,92 @@
+https://www.mapbox.com/
+https://www.google.com/maps/@-34.4675587,-58.5201163,15z?entry=ttu
+https://getbootstrap.com/
+
+https://github.com/Klerith/angular-mapbox
+
+PS C:\Lab\workspaces\workspace-angular-de-cero-a-experto\09-mapasApp> ng g m mapas --routing      
+CREATE src/app/mapas/mapas-routing.module.ts (248 bytes)
+CREATE src/app/mapas/mapas.module.ts (276 bytes)
+
+PS C:\Lab\workspaces\workspace-angular-de-cero-a-experto\09-mapasApp> ng g c mapas/components/miniMapa --skip-tests -is
+CREATE src/app/mapas/components/mini-mapa/mini-mapa.component.html (24 bytes)
+CREATE src/app/mapas/components/mini-mapa/mini-mapa.component.ts (259 bytes)
+UPDATE src/app/app.module.ts (502 bytes)
+
+PS C:\Lab\workspaces\workspace-angular-de-cero-a-experto\09-mapasApp> ng g c mapas/pages/fullScreen --skip-tests -is   
+CREATE src/app/mapas/pages/full-screen/full-screen.component.html (26 bytes)
+CREATE src/app/mapas/pages/full-screen/full-screen.component.ts (265 bytes)
+UPDATE src/app/mapas/mapas.module.ts (384 bytes)
+
+PS C:\Lab\workspaces\workspace-angular-de-cero-a-experto\09-mapasApp> ng g c mapas/pages/marcadores --skip-tests -is
+CREATE src/app/mapas/pages/marcadores/marcadores.component.html (25 bytes)
+CREATE src/app/mapas/pages/marcadores/marcadores.component.ts (263 bytes)
+UPDATE src/app/mapas/mapas.module.ts (488 bytes)
+
+PS C:\Lab\workspaces\workspace-angular-de-cero-a-experto\09-mapasApp> ng g c mapas/pages/zoomRange --skip-tests -is 
+CREATE src/app/mapas/pages/zoom-range/zoom-range.component.html (25 bytes)
+CREATE src/app/mapas/pages/zoom-range/zoom-range.component.ts (262 bytes)
+UPDATE src/app/mapas/mapas.module.ts (590 bytes)
+
+PS C:\Lab\workspaces\workspace-angular-de-cero-a-experto\09-mapasApp> ng g c mapas/pages/propiedades --skip-tests -is      
+CREATE src/app/mapas/pages/propiedades/propiedades.component.html (26 bytes)
+CREATE src/app/mapas/pages/propiedades/propiedades.component.ts (266 bytes)
+UPDATE src/app/mapas/mapas.module.ts (698 bytes)
+
+PS C:\Lab\workspaces\workspace-angular-de-cero-a-experto\09-mapasApp> ng g c shared/menu --skip-tests -is
+CREATE src/app/shared/menu/menu.component.html (19 bytes)
+CREATE src/app/shared/menu/menu.component.ts (245 bytes)
+UPDATE src/app/app.module.ts (583 bytes)
+
+PS C:\Lab\workspaces\workspace-angular-de-cero-a-experto\09-mapasApp> npm install --save mapbox-gl
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: '@csstools/selector-specificity@2.1.1',
+npm WARN EBADENGINE   required: { node: '^14 || ^16 || >=18' },
+npm WARN EBADENGINE   current: { node: 'v12.22.10', npm: '8.3.0' }
+npm WARN EBADENGINE }
+
+added 25 packages, removed 1 package, and audited 981 packages in 15s
+
+119 packages are looking for funding
+  run `npm fund` for details
+
+4 high severity vulnerabilities
+
+To address all issues, run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+
+PS C:\Lab\workspaces\workspace-angular-de-cero-a-experto\09-mapasApp> npm i --save-dev @types/mapbox-gl
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: '@csstools/selector-specificity@2.1.1',
+npm WARN EBADENGINE   required: { node: '^14 || ^16 || >=18' },
+npm WARN EBADENGINE   current: { node: 'v12.22.10', npm: '8.3.0' }
+npm WARN EBADENGINE }
+
+added 2 packages, and audited 983 packages in 9s
+
+119 packages are looking for funding
+  run `npm fund` for details
+
+4 high severity vulnerabilities
+
+To address all issues, run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+
+PS C:\Lab\workspaces\workspace-angular-de-cero-a-experto\10-mapasApp> ng g c mapas/layout/maps-layout --skip-tests
+
+PS C:\Lab\workspaces\workspace-angular-de-cero-a-experto\10-mapasApp> npm install dotenv --save-dev
+https://www.npmjs.com/package/dotenv
+
+PS C:\Lab\workspaces\workspace-angular-de-cero-a-experto\10-mapasApp> npm run env 
+
+> mapas-app@0.0.0 env
+> node ./scripts/set-env.js
+
+
+
+
+
