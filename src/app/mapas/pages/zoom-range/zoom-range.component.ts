@@ -1,57 +1,66 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import * as mapboxgl from 'mapbox-gl';
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { LngLat, Map } from 'mapbox-gl';
 
 @Component({
-  selector: 'app-zoom-range',
   templateUrl: './zoom-range.component.html',
-  styles: [
-    `
-    .mapa-container {
-      width: 100%;
-      height: 100%;
-    }
-
-    .row {
-      background-color: white;
-      border-radius: 5px;
-      bottom: 50px;
-      left: 50px;
-      padding: 10px;
-      position: fixed;
-      z-index: 999;
-
-    }
-    `
-  ]
+  styleUrls: ['./zoom-range.component.css'],
 })
-export class ZoomRangeComponent implements AfterViewInit {
+export class ZoomRangeComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild('mapa') divMapa!: ElementRef;
-  mapa!: mapboxgl.Map;
+  mapa?: Map;
   zoomLevel: number = 16;
+  currentLngLat: LngLat = new LngLat(-58.53047845131584, -34.473020487113914); 
 
   constructor() { }
 
   ngAfterViewInit(): void {
 
-    this.mapa = new mapboxgl.Map({
-      container: this.divMapa.nativeElement, // container ID
-      // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-      style: 'mapbox://styles/mapbox/streets-v12', // style URL
-      //center: [-74.5, 40], // starting position [lng, lat]
-      center: [-58.53047845131584, -34.473020487113914],
-      zoom: this.zoomLevel // starting zoom
+    if ( !this.divMapa ) throw 'El elemento HTML no fue encontrado';
+
+    this.mapa = new Map({
+      container: this.divMapa.nativeElement,        // container ID
+      style: 'mapbox://styles/mapbox/streets-v12',  // style URL
+      center: this.currentLngLat,                   // starting position [lng, lat]
+      zoom: this.zoomLevel                          // starting zoom
     });
-  
+    
+    this.mapListeners();
+  }
+
+  ngOnDestroy(): void {
+    this.mapa?.remove();
+  }
+
+  mapListeners(){
+    if ( !this.mapa ) throw 'Mapa no inicializado';
+
+    this.mapa.on('zoom', (ev) => {
+      this.zoomLevel = this.mapa!.getZoom();
+    });
+
+    this.mapa.on('zoomend', (ev) => {
+      if ( this.mapa!.getZoom() < 18 ) return;
+      this.mapa!.zoomTo(18);
+    });
+
+    this.mapa.on('move', () => {
+      this.currentLngLat = this.mapa!.getCenter();
+    });
+
   }
 
   zoomOut(){
-    this.mapa.zoomOut();
-    this.zoomLevel = this.mapa.getZoom();
+    this.mapa?.zoomOut();
   }
 
   zoomIn() {
-    this.mapa.zoomIn();
-    this.zoomLevel = this.mapa.getZoom();
+    this.mapa?.zoomIn();
   }
+
+  zoomChanged(value: string){
+    this.zoomLevel = Number(value);
+    this.mapa?.zoomTo( this.zoomLevel );
+  }
+
 }
