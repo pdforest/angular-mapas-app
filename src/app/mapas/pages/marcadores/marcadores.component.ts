@@ -39,6 +39,9 @@ export class MarcadoresComponent implements AfterViewInit {
       zoom: this.zoomLevel                          // starting zoom
     });
 
+    this.readFromLocalStorage();
+
+
     /* const markerHtml = document.createElement('div');
     markerHtml.innerHTML = 'Aqui'
 
@@ -71,11 +74,15 @@ export class MarcadoresComponent implements AfterViewInit {
       .addTo( this.mapa );
 
       this.markers.push({ color, marker, });
+      this.saveToLocalStorage();
+
+      marker.on('dragend', () => this.saveToLocalStorage());
   }
 
   deleteMarker( index: number ) {
     this.markers[index].marker.remove();
     this.markers.splice( index, 1 );
+    this.saveToLocalStorage();
   }
 
   flyTo( marker: Marker ) {
@@ -86,4 +93,32 @@ export class MarcadoresComponent implements AfterViewInit {
     });
 
   }
+
+  saveToLocalStorage(){
+    const plainMarkers: PlainMarker[] = this.markers.map( ({color, marker}) => {
+      return{
+        color,
+        lngLat: marker.getLngLat().toArray()
+      }
+    });
+
+    localStorage.setItem('plainMarkers', JSON.stringify( plainMarkers ));
+
+  }
+
+  readFromLocalStorage(){
+    const plainMarkersString = localStorage.getItem('plainMarkers') ?? '[]';
+    const plainMarkers: PlainMarker[] = JSON.parse( plainMarkersString );
+
+    plainMarkers.forEach( ({ color, lngLat }) => {
+      const [ lng, lat ] = lngLat;
+      const coords = new LngLat( lng, lat );
+      this.addMarker(coords, color);
+    });
+
+
+
+  }
+
+
 }
