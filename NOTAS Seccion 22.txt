@@ -1,0 +1,10 @@
+PS C:\Lab\workspaces\workspace-angular-de-cero-a-experto\10-mapasApp> 
+ng g c alone/pages/alonePage --standalone     
+
+CREATE src/app/alone/pages/alone-page/alone-page.component.html (25 bytes)
+CREATE src/app/alone/pages/alone-page/alone-page.component.spec.ts (616 bytes)
+CREATE src/app/alone/pages/alone-page/alone-page.component.ts (312 bytes)
+CREATE src/app/alone/pages/alone-page/alone-page.component.css (0 bytes)
+
+PS C:\Lab\workspaces\workspace-angular-de-cero-a-experto\10-mapasApp>
+

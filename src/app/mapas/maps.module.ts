@@ -3,18 +3,20 @@ import { CommonModule } from '@angular/common';
 
 import { MapsRoutingModule } from './maps-routing.module';
 import { MiniMapComponent } from './components/mini-map/mini-map.component';
-import { SideMenuComponent } from './components/side-menu/side-menu.component';
+
 import { MapsLayoutComponent } from './layout/maps-layout/maps-layout.component';
 import { FullScreenComponent } from './pages/full-screen/full-screen.component';
 import { MarcadoresComponent } from './pages/marcadores/marcadores.component';
 import { PropiedadesComponent } from './pages/propiedades/propiedades.component';
 import { ZoomRangeComponent } from './pages/zoom-range/zoom-range.component';
 
+import { CounterAloneComponent } from '../alone/component/counter-alone/counter-alone.component';
+import { SideMenuComponent } from '../alone/component/side-menu/side-menu.component';
+
 
 @NgModule({
   declarations: [
     MiniMapComponent,
-    SideMenuComponent,
     MapsLayoutComponent,
     FullScreenComponent,
     MarcadoresComponent,
@@ -23,7 +25,9 @@ import { ZoomRangeComponent } from './pages/zoom-range/zoom-range.component';
   ],
   imports: [
     CommonModule,
-    MapsRoutingModule
+    MapsRoutingModule,
+    CounterAloneComponent,
+    SideMenuComponent
   ]
 })
 export class MapsModule { }
